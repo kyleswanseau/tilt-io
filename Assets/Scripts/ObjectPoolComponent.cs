@@ -3,23 +3,23 @@ using UnityEngine.Pool;
 
 public class ObjectPoolComponent : MonoBehaviour
 {
-    public GameObject prefab;
+    protected ObjectPool<GameObject> _pool;
+    protected bool _collectionCheck = true;
+    protected int _defaultSize = 50;
+    protected int _maxSize = 200;
 
-    protected ObjectPool<GameObject> pool;
-    protected bool collectionCheck = true;
-    protected int defaultSize = 50;
-    protected int maxSize = 200;
+    public GameObject prefab;
 
     protected void Awake()
     {
-        pool = new ObjectPool<GameObject>(
+        _pool = new ObjectPool<GameObject>(
             PoolAdd,
             PoolPop,
             PoolPush,
             PoolDestroy,
-            collectionCheck,
-            defaultSize,
-            maxSize
+            _collectionCheck,
+            _defaultSize,
+            _maxSize
             );
     }
 
@@ -46,36 +46,36 @@ public class ObjectPoolComponent : MonoBehaviour
 
     public GameObject Get()
     {
-        return pool.Get();
+        return _pool.Get();
     }
 
     public void Release(GameObject obj)
     {
-        pool.Release(obj);
+        _pool.Release(obj);
     }
 
     public void Clear()
     {
-        pool.Clear();
+        _pool.Clear();
     }
 
     public void Dispose()
     {
-        pool.Dispose();
+        _pool.Dispose();
     }
 
     public int CountAll()
     {
-        return pool.CountAll;
+        return _pool.CountAll;
     }
 
     public int CountActive()
     {
-        return pool.CountActive;
+        return _pool.CountActive;
     }
 
     public int CountInactive()
     {
-        return pool.CountInactive;
+        return _pool.CountInactive;
     }
 }
