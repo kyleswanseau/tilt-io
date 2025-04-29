@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class ObjectPoolComponent : MonoBehaviour
+// Wrapper for object pools
+public class EnemyPool : MonoBehaviour
 {
     protected ObjectPool<GameObject> _pool;
     protected bool _collectionCheck = true;

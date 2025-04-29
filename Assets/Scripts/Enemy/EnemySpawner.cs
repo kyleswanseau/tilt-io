@@ -3,15 +3,16 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     private float _count = 0f;
-    private ObjectPoolComponent _objectPoolComp;
+    private EnemyPool _objectPoolComp;
 
     private void Start()
     {
-        _objectPoolComp = GetComponent<ObjectPoolComponent>();
+        _objectPoolComp = GetComponent<EnemyPool>();
     }
 
     private void FixedUpdate()
     {
+        // Periodically spawn enemies
         _count += Time.deltaTime;
         if (_count + Time.deltaTime >= 3f)
         {
