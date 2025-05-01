@@ -4,12 +4,12 @@ using UnityEngine.Pool;
 public class PowerupPool : MonoBehaviour
 {
     [SerializeField] private Powerup _prefab;
-    protected ObjectPool<Powerup> _pool;
-    protected bool _collectionCheck = true;
-    protected int _defaultSize = 5;
-    protected int _maxSize = 10;
+    private ObjectPool<Powerup> _pool;
+    private bool _collectionCheck = true;
+    private int _defaultSize = 5;
+    private int _maxSize = 10;
 
-    protected void Awake()
+    private void Awake()
     {
         _pool = new ObjectPool<Powerup>(
             PoolAdd,

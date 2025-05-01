@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(PowerupPool))]
+
 public class PowerupSpawner : MonoBehaviour
 {
     private static System.Random rng = new System.Random();
@@ -12,14 +14,14 @@ public class PowerupSpawner : MonoBehaviour
     {
         if (null == _pool)
         {
-            _pool = FindFirstObjectByType<PowerupPool>();
+            _pool = GetComponent<PowerupPool>();
         }
         ResetCooldown();
     }
 
     private void FixedUpdate()
     {
-        if (_lastSpawn + _nextSpawn <= Time.time)
+        if (_lastSpawn + _nextSpawn <= Time.fixedTime)
         {
             if (_pool.CountActive() < 4)
             {
@@ -30,7 +32,7 @@ public class PowerupSpawner : MonoBehaviour
                 Vector2 pos2 = new Vector2(pos3.x, pos3.y);
                 _pool.Get(randPowerup, pos2);
             }
-            _lastSpawn = Time.time;
+            _lastSpawn = Time.fixedTime;
             ResetCooldown();
         }
     }

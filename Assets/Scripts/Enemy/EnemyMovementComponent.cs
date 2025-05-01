@@ -7,14 +7,14 @@ public class EnemyMovementComponent : MonoBehaviour
     private const float aggroMult = 10f;
 
     private Camera _cam;
-    private PlayerMovementComponent _playerController;
+    private Player _playerController;
     private Vector2 _playerPos;
     private Vector2 _myPos;
 
     private void Start()
     {
         _cam = Camera.main;
-        _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerMovementComponent>();
+        _playerController = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     private void FixedUpdate()

@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
+
 public class Powerup : MonoBehaviour
 {
     private static PowerupPool _pool;
@@ -30,12 +33,19 @@ public class Powerup : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerMovementComponent>())
+        if (collision.gameObject.GetComponent<Player>())
         {
-            Debug.Log("boop");
-            _pool.Release(this);
+            try
+            {
+                _pool.Release(this);
+            }
+            catch (InvalidOperationException)
+            {
+                // Why does it trigger twice lmao
+                return;
+            }
         }
     }
 
@@ -49,7 +59,7 @@ public class Powerup : MonoBehaviour
 
     public void Despawn()
     {
-        _powerup = EPowerup.None;
+        _powerup = EPowerup.NONE;
         gameObject.SetActive(false);
     }
 }
