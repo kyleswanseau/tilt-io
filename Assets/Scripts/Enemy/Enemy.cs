@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private const float _minSpeed = 20f;
+    [SerializeField] private const float _minSpeed = 5f;
     [SerializeField] private const float _maxSpeed = 20f;
     [SerializeField] private const float _minAggroDistance = 40f;
     [SerializeField] private const float _maxAggroDistance = 100f;

@@ -39,7 +39,10 @@ public class Powerup : MonoBehaviour
         {
             try
             {
-                _pool.Release(this);
+                if (collision.gameObject.GetComponent<InventoryComponent>().PickupPowerup(_powerup))
+                {
+                    _pool.Release(this);
+                }
             }
             catch (InvalidOperationException)
             {
@@ -61,5 +64,10 @@ public class Powerup : MonoBehaviour
     {
         _powerup = EPowerup.NONE;
         gameObject.SetActive(false);
+    }
+
+    public static Sprite[] GetSprites()
+    {
+        return _icons;
     }
 }
