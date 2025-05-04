@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private float _maxSpeed;
+    [SerializeField] private const float _speed = 10f;
+    [SerializeField] private const float _maxSpeed = 500f;
     private Camera _cam;
     private Vector2 _cursorPos;
     private Rigidbody2D _rb;
@@ -24,14 +24,6 @@ public class Player : MonoBehaviour
         else
         {
             player = this;
-        }
-        if (_speed == 0f)
-        {
-            _speed = 10f;
-        }
-        if (_maxSpeed == 0f)
-        {
-            _maxSpeed = 500f;
         }
     }
 
