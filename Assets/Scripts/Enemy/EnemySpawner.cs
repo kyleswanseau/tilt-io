@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent (typeof(EnemyPool))]
+
 public class EnemySpawner : MonoBehaviour
 {
     private float _count = 0f;

@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PolygonCollider2D))]
+[RequireComponent(typeof(InventoryComponent))]
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     private Camera _cam;
     private Vector2 _cursorPos;
     private Rigidbody2D _rb;
+    private InventoryComponent _inventory;
 
     public static Player player { get; private set; }
     public Vector2 playerPos { get; private set; }
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
     {
         _cam = Camera.main;
         _rb = GetComponent<Rigidbody2D>();
+        _inventory = GetComponent<InventoryComponent>();
     }
 
     private void FixedUpdate()
