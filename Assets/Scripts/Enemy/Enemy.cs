@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private const float _speed = 5f;
-    [SerializeField] private const float _maxSpeed = 50f;
+    [SerializeField] private const float _minSpeed = 20f;
+    [SerializeField] private const float _maxSpeed = 20f;
     [SerializeField] private const float _minAggroDistance = 40f;
     [SerializeField] private const float _maxAggroDistance = 100f;
     [SerializeField] private const float _aggroMult = 10f;
@@ -45,19 +45,7 @@ public class Enemy : MonoBehaviour
 
         // Rotate and translate this enemy
         _rb.rotation = moveAngle;
-        _rb.linearVelocity = moveVector.normalized * (moveMag * _speed / 100f);
-        //transform.eulerAngles = new Vector3(0f, 0f, moveAngle);
-        //transform.Translate(Vector2.up * (moveMag / 500f));
-
-        // WIP code that stretches enemies when they move faster
-        /*
-        if (moveMag > aggroMult)
-        {
-            Vector3 baseScale = new Vector3(0.2f, 0.2f, 1f);
-            Vector3 chaseScale = new Vector3(1f, moveMag / aggroMult, 1f);
-            transform.localScale = Vector3.Scale(baseScale, chaseScale);
-        }
-        */
-        //Debug.Log(moveMag / aggroMult);
+        float speed = Mathf.Clamp01(Time.fixedTime / 100f) * (_maxSpeed - _minSpeed);
+        _rb.linearVelocity = moveVector.normalized * (moveMag * (_minSpeed + speed) / 100f);
     }
 }
