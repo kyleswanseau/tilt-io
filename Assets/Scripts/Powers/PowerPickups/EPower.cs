@@ -1,4 +1,4 @@
-public enum EPowerup
+public enum EPower
 {
     NONE,
     BALL,

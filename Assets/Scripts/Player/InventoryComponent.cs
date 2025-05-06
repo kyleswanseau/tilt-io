@@ -10,8 +10,9 @@ public class InventoryComponent : MonoBehaviour
 {
     private Player _player = Player.player;
     private const int _inventorySize = 3;
-    private EPowerup[] _inventory = new EPowerup[_inventorySize];
-    private int selected = 0;
+    private EPower[] _inventory = new EPower[_inventorySize];
+    private int _selected = 0;
+    [SerializeField] private Power[] powers;
 
     private InputAction _useAction;
     private InputAction _nextAction;
@@ -23,7 +24,7 @@ public class InventoryComponent : MonoBehaviour
 
     private void Awake()
     {
-        _inventory = Enumerable.Repeat(EPowerup.NONE, _inventorySize).ToArray();
+        _inventory = Enumerable.Repeat(EPower.NONE, _inventorySize).ToArray();
     }
 
     private void Start()
@@ -42,46 +43,75 @@ public class InventoryComponent : MonoBehaviour
     {
         if (_useAction.WasPressedThisFrame())
         {
-            _inventory[selected] = EPowerup.NONE;
-            UpdateSlotGraphic();
+            if (_inventory[_selected] != EPower.NONE)
+            {
+                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                Power power = Instantiate(powers[(int)_inventory[_selected]], Vector2.zero, Quaternion.identity);
+                power.Use(rb.position, rb.rotation);
+                _inventory[_selected] = EPower.NONE;
+                UpdateSlotGraphic();
+            }
+            /*
+            switch (_inventory[_selected])
+            {
+                case EPower.NONE:
+                    break;
+                case EPower.BALL:
+                    break;
+                case EPower.BLAST:
+                    break;
+                case EPower.BOMB:
+                    Power power = Instantiate(powers[0], Vector2.zero, Quaternion.identity);
+                    power.Use(transform.position);
+                    break;
+                case EPower.CHAIN:
+                    break;
+                case EPower.GUN:
+                    break;
+                case EPower.SHIELD:
+                    break;
+                default:
+                    break;
+            }
+            */
         }
         if (_nextAction.WasPressedThisFrame())
         {
-            if (selected < _inventorySize - 1)
+            if (_selected < _inventorySize - 1)
             {
-                selected++;
+                _selected++;
             }
             else
             {
-                selected = 0;
+                _selected = 0;
             }
             UpdateSlotSelection();
         }
         if (_prevAction.WasPressedThisFrame())
         {
-            if (selected > 0)
+            if (_selected > 0)
             {
-                selected--;
+                _selected--;
             }
             else
             {
-                selected = _inventorySize - 1;
+                _selected = _inventorySize - 1;
             }
             UpdateSlotSelection();
         }
         if (_slot0Action.WasPressedThisFrame())
         {
-            selected = 0;
+            _selected = 0;
             UpdateSlotSelection();
         }
         if (_slot1Action.WasPressedThisFrame())
         {
-            selected = 1;
+            _selected = 1;
             UpdateSlotSelection();
         }
         if (_slot2Action.WasPressedThisFrame())
         {
-            selected = 2;
+            _selected = 2;
             UpdateSlotSelection();
         }
     }
@@ -93,8 +123,8 @@ public class InventoryComponent : MonoBehaviour
             image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             image.GetComponentInChildren<TextMeshProUGUI>().color = new Color(1f, 1f, 1f);
         }
-        _slotsImages[selected].color = new Color(1f, 1f, 1f, 1f);
-        _slotsImages[selected].GetComponentInChildren<TextMeshProUGUI>().color = new Color(0f, 0f, 0f);
+        _slotsImages[_selected].color = new Color(1f, 1f, 1f, 1f);
+        _slotsImages[_selected].GetComponentInChildren<TextMeshProUGUI>().color = new Color(0f, 0f, 0f);
     }
 
     private void UpdateSlotGraphic()
@@ -102,17 +132,17 @@ public class InventoryComponent : MonoBehaviour
         for (int i = 0; i < _inventorySize; i++)
         {
             _slotsImages[i].GetComponentsInChildren<Image>()[1].sprite =
-                Powerup.GetSprites()[(int)_inventory[i]];
+                PowerPickup.GetSprites()[(int)_inventory[i]];
         }
     }
 
-    public bool PickupPowerup(EPowerup powerup)
+    public bool PickupPowerPickup(EPower power)
     {
         for (int i = 0; i < _inventorySize; i++)
         {
-            if (_inventory[i] == EPowerup.NONE)
+            if (_inventory[i] == EPower.NONE)
             {
-                _inventory[i] = powerup;
+                _inventory[i] = power;
                 UpdateSlotGraphic();
                 return true;
             }

@@ -4,16 +4,15 @@ using UnityEngine.Pool;
 // Wrapper for object pools
 public class EnemyPool : MonoBehaviour
 {
-    protected ObjectPool<GameObject> _pool;
+    [SerializeField] private Enemy _prefab;
+    protected ObjectPool<Enemy> _pool;
     protected bool _collectionCheck = true;
-    protected int _defaultSize = 50;
-    protected int _maxSize = 200;
-
-    public GameObject prefab;
+    protected int _defaultSize = 100;
+    protected int _maxSize = 1000;
 
     protected void Awake()
     {
-        _pool = new ObjectPool<GameObject>(
+        _pool = new ObjectPool<Enemy>(
             PoolAdd,
             PoolPop,
             PoolPush,
@@ -24,35 +23,35 @@ public class EnemyPool : MonoBehaviour
             );
     }
 
-    private GameObject PoolAdd()
+    private Enemy PoolAdd()
     {
-        GameObject newObject = Instantiate(prefab);
-        return newObject;
+        Enemy enemy = Instantiate(_prefab);
+        return enemy;
     }
 
-    private void PoolPop(GameObject obj)
+    private void PoolPop(Enemy enemy)
     {
-        obj.SetActive(true);
+
     }
 
-    private void PoolPush(GameObject obj)
+    private void PoolPush(Enemy enemy)
     {
-        obj.SetActive(false);
+
     }
 
-    private void PoolDestroy(GameObject obj)
+    private void PoolDestroy(Enemy enemy)
     {
-        Destroy(obj);
+        Destroy(enemy);
     }
 
-    public GameObject Get()
+    public Enemy Get()
     {
         return _pool.Get();
     }
 
-    public void Release(GameObject obj)
+    public void Release(Enemy enemy)
     {
-        _pool.Release(obj);
+        _pool.Release(enemy);
     }
 
     public void Clear()

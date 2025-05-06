@@ -54,4 +54,23 @@ public class Player : MonoBehaviour
         _rb.rotation = moveAngle;
         _rb.linearVelocity = moveVector.normalized * (moveMag * _speed / 100f);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Enemy>())
+        {
+            Debug.Log("ded");
+            Time.timeScale = 0f;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<PowerPickup>())
+        {
+            PowerPickup powerPickup = collision.gameObject.GetComponent<PowerPickup>();
+            _inventory.PickupPowerPickup(powerPickup.GetPowerEnum());
+            powerPickup.Despawn();
+        }
+    }
 }

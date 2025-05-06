@@ -4,23 +4,36 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private float _count = 0f;
-    private EnemyPool _objectPoolComp;
+    private static System.Random rng = new System.Random();
+    [SerializeField] private float _maxSpawnInterval = 3f;
+    [SerializeField] private float _minSpawnInterval = 0.3f;
+    [SerializeField] private float _spawnIntervalDelta = 0.03f;
+    private float _timer = 0f;
+    private EnemyPool _pool;
 
     private void Start()
     {
-        _objectPoolComp = GetComponent<EnemyPool>();
+        _pool = GetComponent<EnemyPool>();
     }
 
     private void FixedUpdate()
     {
         // Periodically spawn enemies
-        _count += Time.deltaTime;
-        if (_count + Time.deltaTime >= 3f)
+        if (_timer > Mathf.Max(_maxSpawnInterval - _spawnIntervalDelta * Time.fixedTime, _minSpawnInterval))
         {
-            _count = 0f;
-            GameObject enemy = _objectPoolComp.Get();
-            enemy.transform.position = Vector3.zero;
+            SpawnEnemy();
+            _timer = 0f;
         }
+        _timer += Time.fixedDeltaTime;
+    }
+
+    private void SpawnEnemy()
+    {
+        float xRand = (float)(rng.NextDouble() * 0.9f + 0.05f);
+        float yRand = (float)(rng.NextDouble() * 0.9f + 0.05f);
+        Vector3 pos3 = Camera.main.ViewportToWorldPoint(new Vector3(xRand, yRand, 0f));
+        Vector2 pos2 = new Vector2(pos3.x, pos3.y);
+        Enemy enemy = _pool.Get();
+        enemy.Spawn(pos2);
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private static EnemyPool _pool;
+
     [SerializeField] private const float _minSpeed = 5f;
     [SerializeField] private const float _maxSpeed = 20f;
     [SerializeField] private const float _minAggroDistance = 40f;
@@ -20,6 +22,10 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        if (null == _pool)
+        {
+            _pool = FindFirstObjectByType<EnemyPool>();
+        }
         _cam = Camera.main;
         _player = Player.player;
         _rb = GetComponent<Rigidbody2D>();
@@ -47,5 +53,25 @@ public class Enemy : MonoBehaviour
         _rb.rotation = moveAngle;
         float speed = Mathf.Clamp01(Time.fixedTime / 100f) * (_maxSpeed - _minSpeed);
         _rb.linearVelocity = moveVector.normalized * (moveMag * (_minSpeed + speed) / 100f);
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (null != collision.gameObject.GetComponent<IAttack>())
+        {
+            Despawn();
+        }
+    }
+
+    public void Spawn(Vector2 position)
+    {
+        transform.position = position;
+        gameObject.SetActive(true);
+    }
+
+    public void Despawn()
+    {
+        gameObject.SetActive(false);
+        _pool.Release(this);
     }
 }

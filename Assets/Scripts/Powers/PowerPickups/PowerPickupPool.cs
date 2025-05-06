@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class PowerupPool : MonoBehaviour
+// Wrapper for object pools
+public class PowerPickupPool : MonoBehaviour
 {
-    [SerializeField] private Powerup _prefab;
-    private ObjectPool<Powerup> _pool;
+    [SerializeField] private PowerPickup _prefab;
+    private ObjectPool<PowerPickup> _pool;
     private bool _collectionCheck = true;
     private int _defaultSize = 5;
     private int _maxSize = 10;
 
     private void Awake()
     {
-        _pool = new ObjectPool<Powerup>(
+        _pool = new ObjectPool<PowerPickup>(
             PoolAdd,
             PoolPop,
             PoolPush,
@@ -22,39 +23,35 @@ public class PowerupPool : MonoBehaviour
             );
     }
 
-    private Powerup PoolAdd()
+    private PowerPickup PoolAdd()
     {
-        Powerup newPowerup = Instantiate(_prefab);
-        return newPowerup;
+        PowerPickup powerPickup = Instantiate(_prefab);
+        return powerPickup;
     }
 
-    private void PoolPop(Powerup powerup)
-    {
-
-    }
-
-    private void PoolPush(Powerup powerup)
+    private void PoolPop(PowerPickup powerPickup)
     {
 
     }
 
-    private void PoolDestroy(Powerup powerup)
+    private void PoolPush(PowerPickup powerPickup)
     {
-        powerup.Despawn();
-        Destroy(powerup);
+
     }
 
-    public Powerup Get(EPowerup type, Vector2 position)
+    private void PoolDestroy(PowerPickup powerPickup)
     {
-        Powerup powerup = _pool.Get();
-        powerup.Spawn(type, position);
-        return powerup;
+        Destroy(powerPickup);
     }
 
-    public void Release(Powerup powerup)
+    public PowerPickup Get()
     {
-        powerup.Despawn();
-        _pool.Release(powerup);
+        return _pool.Get();
+    }
+
+    public void Release(PowerPickup powerPickup)
+    {
+        _pool.Release(powerPickup);
     }
 
     public void Clear()
