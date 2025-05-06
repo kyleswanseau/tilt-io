@@ -9,11 +9,6 @@ public class BombPower : Power
     [SerializeField] private TextMesh _textMesh;
     [SerializeField] private ExplosionBehaviour _explosion;
 
-    private void Start()
-    {
-
-    }
-
     protected override void FixedUpdate()
     {
         if (!_isExploding)
@@ -41,19 +36,15 @@ public class BombPower : Power
         }
     }
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<Enemy>())
-        {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-
-        }
-    }
-
     public override void Use(Vector2 position, float rotation)
     {
         transform.position = position;
         Spawn();
+    }
+
+    public override void Trigger()
+    {
+        
     }
 
     public override void Spawn()
@@ -61,14 +52,12 @@ public class BombPower : Power
         _timer = 0f;
         _isExploding = false;
         _textMesh.text = Mathf.CeilToInt(_explosionDelay - _timer).ToString();
-        gameObject.SetActive(true);
     }
 
     public override void Despawn()
     {
         _timer = 0f;
-        gameObject.SetActive(false);
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     private void Explode()

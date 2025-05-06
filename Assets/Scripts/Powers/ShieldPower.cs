@@ -1,16 +1,32 @@
 using UnityEngine;
 
-public class ShieldPower : MonoBehaviour
+public class ShieldPower : Power
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void FixedUpdate()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Use(Vector2 position, float rotation)
     {
-        
+        Spawn();
+    }
+
+    public override void Trigger()
+    {
+        Player.player.isInvincible = false;
+        Despawn();
+    }
+
+    public override void Spawn()
+    {
+        transform.position = Player.player.transform.position + new Vector3 (0f, 0f, 5f);
+        transform.parent = Player.player.transform;
+        Player.player.isInvincible = true;
+    }
+
+    public override void Despawn()
+    {
+        Destroy(gameObject);
     }
 }

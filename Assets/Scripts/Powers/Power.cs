@@ -9,9 +9,9 @@ public abstract class Power : MonoBehaviour, IAttack
 {
     protected abstract void FixedUpdate();
 
-    protected abstract void OnCollisionEnter2D(Collision2D collision);
-
     public abstract void Use(Vector2 position, float rotation);
+
+    public abstract void Trigger();
 
     public abstract void Spawn();
 

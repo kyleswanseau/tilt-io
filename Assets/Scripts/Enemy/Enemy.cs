@@ -57,9 +57,14 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (null != collision.gameObject.GetComponent<IAttack>())
+        GameObject obj = collision.gameObject;
+        if (null != obj.GetComponent<IAttack>())
         {
             Despawn();
+            if (obj.GetComponent<ShieldPower>())
+            {
+                obj.GetComponent<ShieldPower>().Trigger();  // Buggy interaction
+            }
         }
     }
 
@@ -71,7 +76,7 @@ public class Enemy : MonoBehaviour
 
     public void Despawn()
     {
-        gameObject.SetActive(false);
         _pool.Release(this);
+        gameObject.SetActive(false);
     }
 }

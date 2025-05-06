@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     public static Player player { get; private set; }
     public Vector2 playerPos { get; private set; }
+    public bool isInvincible { get; set; } = false;
 
     private void Awake()
     {
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Enemy>())
+        if (!isInvincible && collision.gameObject.GetComponent<Enemy>())
         {
             Debug.Log("ded");
             Time.timeScale = 0f;

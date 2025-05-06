@@ -45,6 +45,7 @@ public class PowerPickupSpawner : MonoBehaviour
 
     private void ResetCooldown()
     {
-        _nextSpawn = (float)(rng.NextDouble() * 10f + 5f);
+        //_nextSpawn = (float)(rng.NextDouble() * 10f + 5f);
+        _nextSpawn = 1f;
     }
 }
