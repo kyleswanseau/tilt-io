@@ -23,10 +23,7 @@ public class Bullet : MonoBehaviour, IAttack
         {
             Despawn();
         }
-        else if (collision.gameObject.GetComponent<Enemy>())
-        {
-            collision.gameObject.GetComponent<Enemy>().Despawn();
-        }
+
     }
 
     public void Spawn(Vector3 position, float rotation)

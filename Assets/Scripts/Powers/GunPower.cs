@@ -53,7 +53,7 @@ public class GunPower : Power
     {
         transform.position = Player.player.transform.position;
         transform.parent = Player.player.transform;
-        transform.localScale = new Vector3(2.5f, 2f, 1f);
+        transform.localScale = new Vector3(1f, 1f, 1f);
         transform.localEulerAngles = Vector3.zero;
         _bullets = _maxBullets;
     }

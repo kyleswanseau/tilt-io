@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -85,7 +86,14 @@ public class Enemy : MonoBehaviour
 
     public void Despawn()
     {
-        _pool.Release(this);
-        gameObject.SetActive(false);
+        try
+        {
+            _pool.Release(this);
+            gameObject.SetActive(false);
+        }
+        catch (InvalidOperationException)
+        {
+
+        }
     }
 }
