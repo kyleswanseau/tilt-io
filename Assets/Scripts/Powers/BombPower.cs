@@ -7,7 +7,7 @@ public class BombPower : Power
     private float _timer;
     private bool _isExploding;
     [SerializeField] private TextMesh _textMesh;
-    [SerializeField] private ExplosionBehaviour _explosion;
+    [SerializeField] private Explosion _explosion;
 
     protected override void FixedUpdate()
     {
@@ -36,7 +36,7 @@ public class BombPower : Power
         }
     }
 
-    public override void Use(Vector2 position, float rotation)
+    public override void Use(Vector3 position, float rotation)
     {
         transform.position = position;
         Spawn();

@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
-  - Powerup
+  - PowerPickup
+  - Power
   layers:
   - Default
   - TransparentFX
@@ -14,13 +15,13 @@ TagManager:
   - Water
   - UI
   - Background
+  - Border
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - PowerPickup
+  - Power
   - 
   - 
   - 

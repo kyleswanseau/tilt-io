@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public class ExplosionBehaviour : MonoBehaviour, IAttack
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
+
+public class Explosion : MonoBehaviour, IAttack
 {
     private void Start()
     {

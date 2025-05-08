@@ -55,7 +55,16 @@ public class Enemy : MonoBehaviour
         _rb.linearVelocity = moveVector.normalized * (moveMag * (_minSpeed + speed) / 100f);
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject obj = collision.gameObject;
+        if (null != obj.GetComponent<IAttack>())
+        {
+            Despawn();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject obj = collision.gameObject;
         if (null != obj.GetComponent<IAttack>())

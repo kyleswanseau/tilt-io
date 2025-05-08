@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8891861956895661963}
   - component: {fileID: 3754408898730474607}
   - component: {fileID: 2603978303826185328}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ShieldPower
-  m_TagString: Untagged
+  m_TagString: Power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.51287466, g: 1, b: 0.3726415, a: 1}
+  m_Color: {r: 0.51287466, g: 1, b: 0.3726415, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -109,7 +109,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

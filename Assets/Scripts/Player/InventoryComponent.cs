@@ -45,35 +45,12 @@ public class InventoryComponent : MonoBehaviour
         {
             if (_inventory[_selected] != EPower.NONE)
             {
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                Power power = Instantiate(powers[(int)_inventory[_selected]], Vector2.zero, Quaternion.identity);
-                power.Use(rb.position, rb.rotation);
+                Power power = Instantiate(powers[(int)_inventory[_selected]]);
+                Vector3 position = new Vector3(transform.position.x, transform.position.y, power.transform.position.z);
+                power.Use(position, transform.eulerAngles.z);
                 _inventory[_selected] = EPower.NONE;
                 UpdateSlotGraphic();
             }
-            /*
-            switch (_inventory[_selected])
-            {
-                case EPower.NONE:
-                    break;
-                case EPower.BALL:
-                    break;
-                case EPower.BLAST:
-                    break;
-                case EPower.BOMB:
-                    Power power = Instantiate(powers[0], Vector2.zero, Quaternion.identity);
-                    power.Use(transform.position);
-                    break;
-                case EPower.CHAIN:
-                    break;
-                case EPower.GUN:
-                    break;
-                case EPower.SHIELD:
-                    break;
-                default:
-                    break;
-            }
-            */
         }
         if (_nextAction.WasPressedThisFrame())
         {

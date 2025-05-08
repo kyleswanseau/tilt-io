@@ -9,7 +9,7 @@ public abstract class Power : MonoBehaviour, IAttack
 {
     protected abstract void FixedUpdate();
 
-    public abstract void Use(Vector2 position, float rotation);
+    public abstract void Use(Vector3 position, float rotation);
 
     public abstract void Trigger();
 

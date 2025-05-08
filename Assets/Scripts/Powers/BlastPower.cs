@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class BlastPower : Power
 {
-    private static float _speed = 12f;
+    private static float _speed = 15f;
+    private static float _activeDuration = 5f;
+    private float _timer;
 
     protected override void FixedUpdate()
     {
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<Border>())
+        if (_timer > _activeDuration)
         {
             Despawn();
         }
+        else
+        {
+            _timer += Time.fixedDeltaTime;
+        }
     }
 
-    public override void Use(Vector2 position, float rotation)
+    public override void Use(Vector3 position, float rotation)
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         transform.position = position;
         transform.eulerAngles = new Vector3(0f, 0f, rotation);
         Spawn();
@@ -32,6 +32,7 @@ public class BlastPower : Power
 
     public override void Spawn()
     {
+        _timer = 0f;
         float rotation = transform.eulerAngles.z * Mathf.Deg2Rad;
         Vector2 moveVector = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
         GetComponent<Rigidbody2D>().linearVelocity = (Vector2.Perpendicular(moveVector.normalized)) * _speed;
