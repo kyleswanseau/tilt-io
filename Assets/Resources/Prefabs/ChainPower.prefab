@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6150580596191610727}
   - component: {fileID: 5776846415205762535}
   - component: {fileID: 3099498962459396506}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ChainPower
-  m_TagString: Untagged
+  m_TagString: Power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0
+  m_AngularDamping: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -154,7 +154,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -192,9 +192,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7510256081610982370}
   - component: {fileID: 1556615406303552847}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Link5
-  m_TagString: Untagged
+  m_TagString: Power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -279,9 +279,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5914298017949731618}
   - component: {fileID: 3232684910545694177}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Link3
-  m_TagString: Untagged
+  m_TagString: Power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -366,9 +366,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3759748050119919087}
   - component: {fileID: 2931367084138764914}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Link4
-  m_TagString: Untagged
+  m_TagString: Power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -453,9 +453,9 @@ GameObject:
   m_Component:
   - component: {fileID: 391235315991488080}
   - component: {fileID: 5617354433659588457}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SpikeBall
-  m_TagString: Untagged
+  m_TagString: Power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -540,9 +540,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8717604360991490423}
   - component: {fileID: 2614757762846105360}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Link6
-  m_TagString: Untagged
+  m_TagString: Power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -627,9 +627,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6244608706851587230}
   - component: {fileID: 1509343540027628307}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Link1
-  m_TagString: Untagged
+  m_TagString: Power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -714,9 +714,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9138578905152976338}
   - component: {fileID: 7815703061249774079}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Link2
-  m_TagString: Untagged
+  m_TagString: Power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

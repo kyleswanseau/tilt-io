@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public static event Action<Enemy> OnEnemyDeathEvent;
     private static EnemyPool _pool;
 
     [SerializeField] private const float _minSpeed = 5f;
@@ -61,6 +62,7 @@ public class Enemy : MonoBehaviour
         GameObject obj = collision.gameObject;
         if (null != obj.GetComponent<IAttack>())
         {
+            OnEnemyDeathEvent(this);
             Despawn();
         }
     }
