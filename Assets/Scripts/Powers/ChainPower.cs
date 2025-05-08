@@ -47,7 +47,7 @@ public class ChainPower : Power
         Vector2 faceVector = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
         Vector2 currentPlayerAngle = Vector2.Perpendicular(faceVector.normalized);
         float angle = Vector2.SignedAngle(currentPlayerAngle, _lastPlayerAngle);
-        _rb.AddTorque(-angle * 2f);
+        _rb.AddTorque(-angle);
         if (_rb.angularVelocity > _maxAngularVelocity)
         {
             _rb.angularVelocity = _maxAngularVelocity;
@@ -73,9 +73,6 @@ public class ChainPower : Power
     {
         _timer = 0f;
         transform.position = Player.player.transform.position;
-        transform.parent = Player.player.transform;
-        transform.localScale = new Vector3(2.5f, 2f, 1f);
-        transform.localEulerAngles = Vector3.zero;
         float rotation = Player.player.transform.eulerAngles.z * Mathf.Deg2Rad;
         Vector2 faceVector = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
         Vector2 _lastPlayerAngle = Vector2.Perpendicular(faceVector.normalized);
