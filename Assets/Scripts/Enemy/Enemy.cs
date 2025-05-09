@@ -7,14 +7,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public static event Action<Enemy> OnEnemyDeathEvent;
     private static EnemyPool _pool;
 
-    [SerializeField] private const float _minSpeed = 5f;
-    [SerializeField] private const float _maxSpeed = 20f;
-    [SerializeField] private const float _minAggroDistance = 40f;
-    [SerializeField] private const float _maxAggroDistance = 100f;
-    [SerializeField] private const float _aggroMult = 10f;
+    private const float _minSpeed = 5f;
+    private const float _maxSpeed = 20f;
+    private const float _minAggroDistance = 40f;
+    private const float _maxAggroDistance = 100f;
+    private const float _aggroMult = 10f;
+    private const int _enemyScore = 50;
 
     private Camera _cam;
     private Player _player;
@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
         GameObject obj = collision.gameObject;
         if (null != obj.GetComponent<IAttack>())
         {
-            OnEnemyDeathEvent(this);
+            ScoreHandler.instance.QueueScore(_enemyScore);
             Despawn();
             if (obj.GetComponent<ShieldPower>())
             {
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
         GameObject obj = collision.gameObject;
         if (null != obj.GetComponent<IAttack>())
         {
-            OnEnemyDeathEvent(this);
+            ScoreHandler.instance.QueueScore(_enemyScore);
             Despawn();
             if (obj.GetComponent<ShieldPower>())
             {
