@@ -58,11 +58,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isInvincible && collision.gameObject.GetComponent<Enemy>())
-        {
-            Debug.Log("ded");
-            Time.timeScale = 0f;
-        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

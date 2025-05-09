@@ -28,11 +28,6 @@ public class ShieldPower : Power
         transform.parent = Player.player.transform;
         transform.localScale = new Vector3(2.5f, 2f, 1f);
         transform.localEulerAngles = Vector3.zero;
-        Player.player.isInvincible = true;
-    }
-
-    public override void Despawn()
-    {
-        Destroy(gameObject);
+        //Player.player.isInvincible = true;
     }
 }

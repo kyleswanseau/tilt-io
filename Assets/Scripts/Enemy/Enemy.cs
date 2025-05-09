@@ -64,6 +64,14 @@ public class Enemy : MonoBehaviour
         {
             OnEnemyDeathEvent(this);
             Despawn();
+            if (obj.GetComponent<ShieldPower>())
+            {
+                obj.GetComponent<ShieldPower>().Trigger();  // Buggy interaction
+            }
+        }
+        else if (obj.GetComponent<Player>() && obj.GetComponent<Player>().isInvincible == false)
+        {
+            FindFirstObjectByType<GameOverHandler>().GameOver();
         }
     }
 
@@ -72,6 +80,7 @@ public class Enemy : MonoBehaviour
         GameObject obj = collision.gameObject;
         if (null != obj.GetComponent<IAttack>())
         {
+            OnEnemyDeathEvent(this);
             Despawn();
             if (obj.GetComponent<ShieldPower>())
             {

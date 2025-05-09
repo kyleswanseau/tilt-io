@@ -57,9 +57,4 @@ public class GunPower : Power
         transform.localEulerAngles = Vector3.zero;
         _bullets = _maxBullets;
     }
-
-    public override void Despawn()
-    {
-        Destroy(gameObject);
-    }
 }

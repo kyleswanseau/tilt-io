@@ -54,12 +54,6 @@ public class BombPower : Power
         _textMesh.text = Mathf.CeilToInt(_explosionDelay - _timer).ToString();
     }
 
-    public override void Despawn()
-    {
-        _timer = 0f;
-        Destroy(gameObject);
-    }
-
     private void Explode()
     {
         _timer = 0f;

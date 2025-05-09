@@ -37,9 +37,4 @@ public class BlastPower : Power
         Vector2 moveVector = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
         GetComponent<Rigidbody2D>().linearVelocity = (Vector2.Perpendicular(moveVector.normalized)) * _speed;
     }
-
-    public override void Despawn()
-    {
-        Destroy(gameObject);
-    }
 }

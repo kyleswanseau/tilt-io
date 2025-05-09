@@ -77,9 +77,4 @@ public class ChainPower : Power
         Vector2 faceVector = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
         Vector2 _lastPlayerAngle = Vector2.Perpendicular(faceVector.normalized);
     }
-
-    public override void Despawn()
-    {
-        Destroy(gameObject);
-    }
 }

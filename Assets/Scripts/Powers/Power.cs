@@ -15,7 +15,10 @@ public abstract class Power : MonoBehaviour, IAttack
 
     public abstract void Spawn();
 
-    public abstract void Despawn();
+    public virtual void Despawn()
+    {
+        Destroy(gameObject);
+    }
 
     public static Type EnumToType(EPower power)
     {
