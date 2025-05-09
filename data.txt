@@ -1,3 +1,0 @@
-john,5
-mary,10
-Guest,1990

@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
             Despawn();
             if (obj.GetComponent<ShieldPower>())
             {
-                obj.GetComponent<ShieldPower>().Trigger();  // Buggy interaction
+                obj.GetComponent<ShieldPower>().Trigger();
             }
         }
         else if (obj.GetComponent<Player>() && obj.GetComponent<Player>().isInvincible == false)
@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
             Despawn();
             if (obj.GetComponent<ShieldPower>())
             {
-                obj.GetComponent<ShieldPower>().Trigger();  // Buggy interaction
+                obj.GetComponent<ShieldPower>().Trigger();
             }
         }
     }
